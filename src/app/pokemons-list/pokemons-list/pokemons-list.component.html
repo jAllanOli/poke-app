@@ -1,3 +1,11 @@
-<p>
-  pokemons-list works!
-</p>
+<h1>TITULO</h1>
+<!-- <button
+  *ngFor="let pokemon of pokemons$ | async"
+  (click)="handleClick(pokemon.url)"
+>
+  {{ pokemon.name }}
+</button> -->
+<div *ngFor="let poke of pokemons">
+  <p>{{ poke.name }}</p>
+  <img [src]="poke.sprite" alt="" />
+</div>
