@@ -1,11 +1,12 @@
-<h1>TITULO</h1>
-<!-- <button
-  *ngFor="let pokemon of pokemons$ | async"
-  (click)="handleClick(pokemon.url)"
->
-  {{ pokemon.name }}
-</button> -->
-<div *ngFor="let poke of pokemons">
-  <p>{{ poke.name }}</p>
-  <img [src]="poke.sprite" alt="" />
-</div>
+<main class="main-container">
+  <h1 class="title">Pokemons</h1>
+
+  <div class="grid-container">
+    <app-pokemon-card
+      *ngFor="let pokemon of pokemons"
+      [name]="pokemon.name"
+      [id]="pokemon.id"
+      [sprite]="pokemon.sprite"
+    ></app-pokemon-card>
+  </div>
+</main>

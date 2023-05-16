@@ -15,7 +15,9 @@ export class PokemonsService {
   constructor(private http: HttpClient) {}
 
   getPokemons() {
-    return this.http.get<apiResponse>('https://pokeapi.co/api/v2/pokemon/');
+    return this.http.get<apiResponse>(
+      'https://pokeapi.co/api/v2/pokemon/?limit=12&offset=0'
+    );
   }
 
   getPokemonByUrl(url: string) {
