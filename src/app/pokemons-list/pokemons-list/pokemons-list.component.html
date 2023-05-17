@@ -6,7 +6,8 @@
       *ngFor="let pokemon of pokemons"
       [name]="pokemon.name"
       [id]="pokemon.id"
-      [sprite]="pokemon.sprite"
+      [sprite]="pokemon.sprites.front_default"
+      [types]="pokemon.types"
     ></app-pokemon-card>
   </div>
 </main>

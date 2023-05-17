@@ -1,8 +1,11 @@
 .main-container {
+  margin-inline: auto;
+  padding: 1.5rem 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  height: 90vh;
+  justify-content: space-between;
+  min-height: 90vh;
+  max-width: 80%;
 }
 
 .title {
@@ -10,12 +13,8 @@
 }
 
 .grid-container {
-  margin-inline: auto;
-  flex-shrink: 0;
-  max-width: 1080px;
-
-  padding: 1rem 3rem;
+  padding: 1rem 4rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  gap: 1.5rem;
 }

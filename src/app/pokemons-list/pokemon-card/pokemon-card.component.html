@@ -1,4 +1,11 @@
 <div class="pokemon-card">
-  <img [src]="sprite" alt="pokemon" />
-  <h3>{{ name }}</h3>
+  <img class="pokemon-sprite" [src]="sprite" alt="pokemon" />
+  <h3>{{ name | titlecase }}</h3>
+  <div class="types-container">
+    <img
+      *ngFor="let type of types"
+      [src]="baseIconPath + type.type.name + '.png'"
+      [alt]="type.type.name"
+    />
+  </div>
 </div>

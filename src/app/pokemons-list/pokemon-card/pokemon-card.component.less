@@ -1,5 +1,5 @@
 .pokemon-card {
-  padding: 2rem 2.5rem;
+  padding: 2rem 1rem;
   border-radius: 5px;
   background-color: var(--light-gray-2);
   display: flex;
@@ -7,7 +7,20 @@
   align-items: center;
   gap: 1rem;
 
-  &__h3 {
-    color: var(--dark-grey);
+  & h3 {
+    color: var(--dark-gray);
+  }
+
+  & .pokemon-sprite {
+    width: 160px;
+  }
+}
+
+.types-container {
+  display: flex;
+  gap: 1rem;
+
+  & img {
+    width: 100px;
   }
 }
