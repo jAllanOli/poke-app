@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { concatMap, from, map, mergeMap, toArray } from 'rxjs';
+import { concatMap, finalize, from, map, mergeMap, toArray } from 'rxjs';
 
 import {
   PokemonDetails,
@@ -13,19 +13,32 @@ import {
 })
 export class PokemonsListComponent implements OnInit {
   pokemons: PokemonDetails[] = [];
+  isLoading!: boolean;
+  currentPage = 0;
+  totalItems!: number;
 
   constructor(private service: PokemonsService) {}
   ngOnInit(): void {
+    this.fetchPokemons();
+  }
+
+  fetchPokemons(offset = 0) {
+    this.pokemons = [];
+    this.isLoading = true;
     this.service
-      .getPokemons()
+      .getPokemons(offset)
       .pipe(
-        map(({ results }) => results.map(({ name }) => name)),
+        map(({ results, count }) => {
+          this.totalItems = count;
+          return results.map(({ name }) => name);
+        }),
         mergeMap((names) =>
           from(names).pipe(
             concatMap((name) => this.service.getPokemonDetails(name))
           )
         ),
-        toArray()
+        toArray(),
+        finalize(() => (this.isLoading = false))
       )
       .subscribe((pokemons) =>
         pokemons.forEach((pokemon) => {
@@ -33,5 +46,17 @@ export class PokemonsListComponent implements OnInit {
           console.log(this.pokemons);
         })
       );
+  }
+
+  nextPage() {
+    if (this.currentPage > this.totalItems / 12) return;
+    this.currentPage++;
+    this.fetchPokemons(this.currentPage * 12);
+  }
+
+  previousPage() {
+    if (this.currentPage === 0) return;
+    this.currentPage--;
+    this.fetchPokemons(this.currentPage * 12);
   }
 }

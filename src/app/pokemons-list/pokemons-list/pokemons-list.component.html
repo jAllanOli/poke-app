@@ -1,6 +1,17 @@
 <main class="main-container">
-  <h1 class="title">Pokemons</h1>
-
+  <header class="list-header">
+    <h1 class="title">Pokemons</h1>
+    <div class="buttons-container">
+      <button class="btn" (click)="previousPage()">Previous</button>
+      <button class="btn" (click)="nextPage()">Next</button>
+    </div>
+  </header>
+  <img
+    class="loading-img"
+    *ngIf="isLoading"
+    src="../../../assets/pokeball.gif"
+    alt="pokeball"
+  />
   <div class="grid-container">
     <app-pokemon-card
       *ngFor="let pokemon of pokemons"
