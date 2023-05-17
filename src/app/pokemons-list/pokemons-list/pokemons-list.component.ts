@@ -16,6 +16,8 @@ export class PokemonsListComponent implements OnInit {
   isLoading!: boolean;
   currentPage = 0;
   totalItems!: number;
+  modalVisibility = false;
+  modalMessage!: string;
 
   constructor(private service: PokemonsService) {}
   ngOnInit(): void {
@@ -55,8 +57,16 @@ export class PokemonsListComponent implements OnInit {
   }
 
   previousPage() {
-    if (this.currentPage === 0) return;
+    if (this.currentPage === 0) {
+      this.toggleModalVisibility();
+      this.modalMessage = 'Already on first page';
+      return;
+    }
     this.currentPage--;
     this.fetchPokemons(this.currentPage * 12);
+  }
+
+  toggleModalVisibility() {
+    this.modalVisibility = !this.modalVisibility;
   }
 }

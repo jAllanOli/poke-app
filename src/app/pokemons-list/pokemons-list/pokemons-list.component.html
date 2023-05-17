@@ -1,3 +1,8 @@
+<app-alert-modal
+  *ngIf="modalVisibility"
+  [alertMessage]="modalMessage"
+  (modalVisibility)="toggleModalVisibility()"
+></app-alert-modal>
 <main class="main-container">
   <header class="list-header">
     <h1 class="title">Pokemons</h1>
