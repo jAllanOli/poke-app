@@ -1,7 +1,7 @@
-.pokemon-card {
+.card {
   transition: all 500ms ease-in-out;
   animation: appear 500ms;
-  padding: 2rem 1rem;
+  padding: 1.5rem;
   border-radius: 5px;
   background-color: var(--light-gray-2);
   display: flex;
@@ -9,20 +9,46 @@
   align-items: center;
   gap: 1rem;
 
+  &__favorite-btn {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-self: flex-end;
+    background-color: transparent;
+    & svg {
+      width: 35px;
+      & path {
+        transition: all 500ms ease-in-out;
+      }
+      & path:hover {
+        transition: all 250ms ease-in-out;
+        fill: #fff41f;
+      }
+    }
+  }
+
   & h3 {
     color: var(--dark-gray);
   }
 
-  & .pokemon-sprite {
+  &__sprite {
     width: 160px;
+  }
+
+  &__types-container {
+    display: flex;
+    gap: 1rem;
+
+    & img {
+      width: 100px;
+    }
   }
 }
 
-.types-container {
-  display: flex;
-  gap: 1rem;
+.yellow-star {
+  fill: #fff41f;
+}
 
-  & img {
-    width: 100px;
-  }
+.dark-star {
+  fill: #282832;
 }

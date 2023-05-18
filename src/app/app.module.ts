@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonsListModule } from './pokemons-list/pokemons-list.module';
 import { PokeSearchModule } from './poke-search/poke-search.module';
+import { FavoritePokemonModule } from './favorite-pokemon/favorite-pokemon.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { PokeSearchModule } from './poke-search/poke-search.module';
     AppRoutingModule,
     PokemonsListModule,
     PokeSearchModule,
+    FavoritePokemonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { take } from 'rxjs';
 import {
   PokemonDetails,
@@ -10,16 +10,15 @@ import {
   templateUrl: './poke-search.component.html',
   styleUrls: ['./poke-search.component.less'],
 })
-export class PokeSearchComponent implements OnInit {
+export class PokeSearchComponent {
   searchName!: string;
   receivedPokemon!: PokemonDetails;
   isLoading!: boolean;
   modalMessage!: string;
   modalVisibility = false;
+  subscription!: any;
 
   constructor(private service: PokemonsService) {}
-
-  ngOnInit() {}
 
   onClick() {
     if (!this.searchName) {
@@ -28,12 +27,12 @@ export class PokeSearchComponent implements OnInit {
     }
     this.isLoading = true;
     this.searchName = this.searchName.toLowerCase().trim();
-    this.service
+    this.subscription = this.service
       .getPokemonDetails(this.searchName)
       .pipe(take(1))
       .subscribe(
         (data) => {
-          this.receivedPokemon = data;
+          return (this.receivedPokemon = data);
         },
         () => {
           this.isLoading = false;

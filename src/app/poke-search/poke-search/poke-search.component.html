@@ -7,7 +7,13 @@
 <main class="main-container">
   <h1 class="title">Search a Pokemon</h1>
   <div class="search-area">
-    <input class="search-input" [(ngModel)]="searchName" type="text" />
+    <input
+      placeholder="Type a pokemon Id or Name"
+      class="search-input"
+      [(ngModel)]="searchName"
+      type="text"
+      (keyup.enter)="onClick()"
+    />
     <button class="btn" (click)="onClick()">Search</button>
   </div>
   <img
@@ -19,10 +25,7 @@
   <div *ngIf="receivedPokemon" class="result-container">
     <app-pokemon-card
       class="search-result"
-      [name]="receivedPokemon.name"
-      [id]="receivedPokemon.id"
-      [sprite]="receivedPokemon.sprites.front_default"
-      [types]="receivedPokemon.types"
+      [pokemonProps]="receivedPokemon"
     ></app-pokemon-card>
   </div>
 </main>
