@@ -45,7 +45,6 @@ export class PokemonsListComponent implements OnInit {
       .subscribe((pokemons) =>
         pokemons.forEach((pokemon) => {
           this.pokemons.push(pokemon);
-          console.log(this.pokemons);
         })
       );
   }

@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonsListModule } from './pokemons-list/pokemons-list.module';
-import { AlertModalComponent } from './shared/alert-modal/alert-modal.component';
+import { PokeSearchModule } from './poke-search/poke-search.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +14,7 @@ import { AlertModalComponent } from './shared/alert-modal/alert-modal.component'
     HttpClientModule,
     AppRoutingModule,
     PokemonsListModule,
+    PokeSearchModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -3,7 +3,7 @@
   [alertMessage]="modalMessage"
   (modalVisibility)="toggleModalVisibility()"
 ></app-alert-modal>
-<main class="main-container">
+<main class="main-container list-container">
   <header class="list-header">
     <h1 class="title">Pokemons</h1>
     <div class="buttons-container">
@@ -14,7 +14,7 @@
   <img
     class="loading-img"
     *ngIf="isLoading"
-    src="../../../assets/pokeball.gif"
+    src="../../../assets/icons/pokeball.gif"
     alt="pokeball"
   />
   <div class="grid-container">

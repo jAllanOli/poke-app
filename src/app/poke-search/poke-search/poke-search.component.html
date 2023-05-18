@@ -1,0 +1,28 @@
+<app-alert-modal
+  *ngIf="modalVisibility"
+  [alertMessage]="modalMessage"
+  (modalVisibility)="toggleModalVisibility()"
+></app-alert-modal>
+
+<main class="main-container">
+  <h1 class="title">Search a Pokemon</h1>
+  <div class="search-area">
+    <input class="search-input" [(ngModel)]="searchName" type="text" />
+    <button class="btn" (click)="onClick()">Search</button>
+  </div>
+  <img
+    class="loading-img"
+    *ngIf="isLoading"
+    src="../../../assets/icons/pokeball.gif"
+    alt="pokeball"
+  />
+  <div *ngIf="receivedPokemon" class="result-container">
+    <app-pokemon-card
+      class="search-result"
+      [name]="receivedPokemon.name"
+      [id]="receivedPokemon.id"
+      [sprite]="receivedPokemon.sprites.front_default"
+      [types]="receivedPokemon.types"
+    ></app-pokemon-card>
+  </div>
+</main>
