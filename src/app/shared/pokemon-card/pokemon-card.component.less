@@ -28,6 +28,7 @@
   }
 
   & h3 {
+    font-size: 24px;
     color: var(--dark-gray);
   }
 
@@ -42,6 +43,19 @@
     & img {
       width: 100px;
     }
+  }
+
+  &:hover {
+    background-color: var(--red);
+    cursor: pointer;
+
+    & h3 {
+      color: var(--light-gray-2);
+    }
+  }
+
+  &:active {
+    background-color: var(--dark-red);
   }
 }
 
