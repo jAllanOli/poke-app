@@ -2,6 +2,7 @@
   <h1 class="title">Favorite Pokemons</h1>
   <div class="grid-container">
     <app-pokemon-card
+      (favoriteUpdate)="updateFavorites()"
       *ngFor="let pokemon of favoritePokemons"
       [pokemonProps]="pokemon"
     ></app-pokemon-card>

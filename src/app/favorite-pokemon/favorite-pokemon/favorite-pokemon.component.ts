@@ -13,7 +13,7 @@ import {
   styleUrls: ['./favorite-pokemon.component.less'],
 })
 export class FavoritePokemonComponent implements OnInit {
-  favoritePokemonIds = this.favoritePokemonService.getFromStorage();
+  favoritePokemonIds: number[] = this.favoritePokemonService.getFromStorage();
   favoritePokemons: PokemonDetails[] = [];
 
   constructor(
@@ -22,6 +22,16 @@ export class FavoritePokemonComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getFavorites();
+  }
+
+  updateFavorites() {
+    this.favoritePokemonIds = this.favoritePokemonService.getFromStorage();
+    this.getFavorites();
+  }
+
+  getFavorites() {
+    this.favoritePokemons = [];
     this.favoritePokemonIds.map((pokemonId) => {
       this.pokemonsService
         .getPokemonDetails(pokemonId)

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PokemonDetails } from 'src/app/shared/services/pokemons.service';
 import { FavoriteService } from '../services/favorite.service';
 
@@ -8,8 +8,9 @@ import { FavoriteService } from '../services/favorite.service';
   styleUrls: ['./pokemon-card.component.less'],
 })
 export class PokemonCardComponent implements OnInit {
+  @Output() favoriteUpdate = new EventEmitter();
   @Input() pokemonProps!: PokemonDetails;
-  @Input() isFavorited?: boolean;
+  isFavorited!: boolean;
 
   modalVisibility = false;
   baseIconPath = '../../../assets/typeIcons/';
@@ -24,6 +25,7 @@ export class PokemonCardComponent implements OnInit {
     if (this.isFavorited) {
       this.favoriteService.removeFavorite(this.pokemonProps.id);
       this.isFavorited = this.verifyFavorite();
+      this.favoriteUpdate.emit();
       return;
     }
     this.favoriteService.putFavorite(this.pokemonProps.id);
