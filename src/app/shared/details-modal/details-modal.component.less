@@ -1,0 +1,89 @@
+.pokemon-details {
+  min-width: 35%;
+  left: 35%;
+  top: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--light-gray-1);
+    padding-bottom: 0.25rem;
+  }
+}
+
+.sprites-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+
+  & img {
+    width: 200px;
+  }
+}
+
+.detail-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: 100%;
+  color: var(--dark-gray);
+}
+
+.abilities-results {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+li {
+  display: block;
+  position: relative;
+}
+
+ul li:before {
+  content: "";
+  position: absolute;
+  top: 1.3em;
+  left: -20px;
+  margin-top: -0.9em;
+  background: linear-gradient(90deg, var(--dark-red), var(--red));
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  padding: 8px;
+}
+
+.level-cell {
+  text-align: start;
+}
+
+.move-cell {
+  text-align: end;
+}
+
+tr:nth-child(odd) {
+  background-color: var(--dark-red);
+  color: var(--light-gray-2);
+}
+
+.level-up-moves {
+  display: flex;
+  align-items: flex-start;
+  height: 300px;
+  overflow-y: auto;
+}

@@ -1,1 +1,58 @@
-<p>details-modal works!</p>
+<ng-container>
+  <div class="modal pokemon-details">
+    <header class="pokemon-details__header">
+      <h2>
+        {{ pokemonProps.name | titlecase }}
+      </h2>
+      <button class="close-btn" (click)="onClose()">
+        <img src="../../../assets/icons/botao-x.png" alt="" />
+      </button>
+    </header>
+    <div class="sprites-container">
+      <img [src]="pokemonProps.sprites.front_default" alt="" />
+      <img [src]="pokemonProps.sprites.front_shiny" alt="" />
+    </div>
+
+    <div class="detail-section">
+      <h3 class="detail-section__title">Weight:</h3>
+      <p class="detail-section__text">{{ pokemonProps.weight / 10 }} kg</p>
+    </div>
+
+    <div class="detail-section">
+      <h3 class="detail-section__title">Height:</h3>
+      <p class="detail-section__text">{{ pokemonProps.height / 10 }} m</p>
+    </div>
+
+    <div class="detail-section">
+      <h3 class="detail-section__title">Abilities:</h3>
+      <div class="abilities-results">
+        <ul>
+          <li
+            *ngFor="let ability of pokemonProps.abilities"
+            class="detail-section__text"
+          >
+            {{ ability.ability.name.replace("-", " ") | titlecase }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="detail-section level-up-moves">
+      <table>
+        <tr>
+          <th class="level-cell">Level</th>
+          <th class="move-cell">Move</th>
+        </tr>
+        <tr *ngFor="let move of levelUpMoves">
+          <td class="level-cell">
+            {{ move.version_group_details[0].level_learned_at }}
+          </td>
+          <td class="move-cell">
+            {{ move.move.name.replace("-", " ") | titlecase }}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</ng-container>

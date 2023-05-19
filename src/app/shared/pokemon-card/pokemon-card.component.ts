@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PokemonDetails } from 'src/app/shared/services/pokemons.service';
 import { FavoriteService } from '../services/favorite.service';
 
@@ -7,27 +7,27 @@ import { FavoriteService } from '../services/favorite.service';
   templateUrl: './pokemon-card.component.html',
   styleUrls: ['./pokemon-card.component.less'],
 })
-export class PokemonCardComponent implements AfterContentInit {
+export class PokemonCardComponent {
   @Input() pokemonProps!: PokemonDetails;
 
+  modalVisibility = false;
   isFavorited!: boolean;
   baseIconPath = '../../../assets/typeIcons/';
 
   constructor(private favoriteService: FavoriteService) {}
 
-  ngAfterContentInit(): void {
-    this.isFavorited = this.verifyFavorited();
-  }
-
   onClick() {
     if (this.isFavorited) {
       return;
     }
-    this.favoriteService.putFavorite(this.pokemonProps);
-    this.isFavorited = this.verifyFavorited();
+    this.favoriteService.putFavorite(this.pokemonProps.id);
   }
 
-  verifyFavorited() {
-    return this.favoriteService.getFavorites().includes(this.pokemonProps);
+  onCardClick() {
+    this.modalVisibility = true;
+  }
+
+  toggleModalVisibility() {
+    this.modalVisibility = !this.modalVisibility;
   }
 }

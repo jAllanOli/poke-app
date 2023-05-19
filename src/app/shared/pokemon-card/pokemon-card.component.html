@@ -1,3 +1,8 @@
+<app-details-modal
+  *ngIf="modalVisibility"
+  [pokemonProps]="pokemonProps"
+  (modalVisibility)="toggleModalVisibility()"
+></app-details-modal>
 <div class="card">
   <button class="card__favorite-btn" (click)="onClick()">
     <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,7 +19,7 @@
     [src]="pokemonProps.sprites.front_default"
     alt="pokemon"
   />
-  <h3>{{ pokemonProps.name | titlecase }}</h3>
+  <h3 (click)="onCardClick()">{{ pokemonProps.name | titlecase }}</h3>
   <div class="card__types-container">
     <img
       *ngFor="let type of pokemonProps.types"

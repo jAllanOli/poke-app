@@ -5,8 +5,12 @@ import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { DetailsModalComponent } from './details-modal/details-modal.component';
 
 @NgModule({
-  declarations: [AlertModalComponent, PokemonCardComponent, DetailsModalComponent],
+  declarations: [
+    AlertModalComponent,
+    PokemonCardComponent,
+    DetailsModalComponent,
+  ],
   imports: [CommonModule],
-  exports: [AlertModalComponent, PokemonCardComponent],
+  exports: [AlertModalComponent, PokemonCardComponent, DetailsModalComponent],
 })
 export class SharedModule {}

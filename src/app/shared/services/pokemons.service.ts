@@ -9,7 +9,7 @@ interface ApiInitialResponse {
 }
 
 export interface PokemonDetails {
-  abilities: DefaultType[];
+  abilities: Ability[];
   base_experience: number;
   forms: DefaultType[];
   game_indices: Game[];
@@ -34,6 +34,12 @@ type DefaultType = {
   url: string;
 };
 
+type Ability = {
+  ability: DefaultType;
+  is_hidden: boolean;
+  slot: number;
+};
+
 type Game = {
   game_index: number;
   version: DefaultType;
@@ -49,9 +55,15 @@ type VersionDetails = {
   version: DefaultType;
 };
 
-type MoveDetail = {
+export type MoveDetail = {
   move: DefaultType;
-  version_group_details: any[];
+  version_group_details: MoveVersionDetail[];
+};
+
+type MoveVersionDetail = {
+  level_learned_at: number;
+  move_learn_method: DefaultType;
+  version_group: DefaultType;
 };
 
 type Sprites = {
@@ -85,7 +97,7 @@ export class PokemonsService {
 
   getPokemons(offset = 0) {
     return this.http.get<ApiInitialResponse>(
-      `${this.baseUrl}/pokemon/?limit=12&offset=${offset}`
+      `${this.baseUrl}/pokemon/?limit=8&offset=${offset}`
     );
   }
 

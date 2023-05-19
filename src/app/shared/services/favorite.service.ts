@@ -1,31 +1,27 @@
 import { Injectable } from '@angular/core';
-import { PokemonDetails } from './pokemons.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FavoriteService {
-  private favoritePokemons: PokemonDetails[] = [];
+  favoritesArrayName = 'favoritePokemons';
 
   constructor() {}
 
-  putFavorite(pokemon: PokemonDetails) {
-    this.favoritePokemons.push(pokemon);
-    this.saveOnStorage(pokemon);
+  putFavorite(pokemonId: number): void {
+    const favorites = this.getFromStorage();
+    favorites.push(pokemonId);
+    this.saveOnStorage(favorites);
   }
 
-  getFavorites() {
-    return this.favoritePokemons.map((pokemon) =>
-      this.getFromStorage(pokemon.name)
-    );
+  getFavorites() {}
+
+  saveOnStorage(favArr: number[]): void {
+    const stringfiedObj = JSON.stringify(favArr);
+    localStorage.setItem(this.favoritesArrayName, stringfiedObj);
   }
 
-  saveOnStorage(pokemon: PokemonDetails): void {
-    const stringfiedObj = JSON.stringify(pokemon);
-    localStorage.setItem(pokemon.name, stringfiedObj);
-  }
-
-  getFromStorage(pokemonName: string) {
-    return JSON.parse(localStorage.getItem(pokemonName) as string);
+  getFromStorage(): number[] {
+    return JSON.parse(localStorage.getItem(this.favoritesArrayName) || '[]');
   }
 }
