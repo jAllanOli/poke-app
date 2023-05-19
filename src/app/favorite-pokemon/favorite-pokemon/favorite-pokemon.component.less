@@ -1,0 +1,28 @@
+.no-favorites-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 4.5rem;
+  height: 100%;
+  animation: appear 500ms;
+  & p,
+  a {
+    font-size: 4rem;
+    color: var(--light-gray-2);
+    text-decoration: none;
+    text-shadow: 4px 3px 5px #68686883;
+    transition: all 500ms ease;
+  }
+
+  img {
+    display: block;
+    width: 550px;
+  }
+
+  & a:hover {
+    transition: all 500ms ease;
+    color: var(--red);
+    text-shadow: 4px 3px 5px #000;
+  }
+}

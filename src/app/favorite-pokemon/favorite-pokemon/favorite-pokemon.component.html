@@ -7,4 +7,9 @@
       [pokemonProps]="pokemon"
     ></app-pokemon-card>
   </div>
+  <div *ngIf="!favoritePokemonIds.length" class="no-favorites-message">
+    <p>There is no favorite Pokemon, go</p>
+    <a href="http://localhost:4200/pokemons-list">Add one</a>
+    <img src="../../../assets/images/pokeball-fav-page.png" alt="" />
+  </div>
 </main>
