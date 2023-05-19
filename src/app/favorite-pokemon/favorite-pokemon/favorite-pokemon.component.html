@@ -1,1 +1,9 @@
-<p>favorite-pokemon works!</p>
+<main class="main-container list-container">
+  <h1 class="title">Favorite Pokemons</h1>
+  <div class="grid-container">
+    <app-pokemon-card
+      *ngFor="let pokemon of favoritePokemons"
+      [pokemonProps]="pokemon"
+    ></app-pokemon-card>
+  </div>
+</main>

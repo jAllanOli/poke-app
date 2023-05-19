@@ -5,6 +5,7 @@
   --red: #a92727;
   --light-gray-1: #c6d6d6;
   --light-gray-2: #dee7e7;
+  --yellow: #fcd423;
   --font: "Poppins", sans-serif;
 }
 
@@ -99,6 +100,14 @@ body {
   & img {
     width: 18px;
   }
+}
+
+.grid-container {
+  animation: appear 750ms;
+  padding: 1rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
 }
 
 @keyframes appear {

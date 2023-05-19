@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PokemonDetails } from 'src/app/shared/services/pokemons.service';
 import { FavoriteService } from '../services/favorite.service';
 
@@ -7,20 +7,27 @@ import { FavoriteService } from '../services/favorite.service';
   templateUrl: './pokemon-card.component.html',
   styleUrls: ['./pokemon-card.component.less'],
 })
-export class PokemonCardComponent {
+export class PokemonCardComponent implements OnInit {
   @Input() pokemonProps!: PokemonDetails;
+  @Input() isFavorited?: boolean;
 
   modalVisibility = false;
-  isFavorited!: boolean;
   baseIconPath = '../../../assets/typeIcons/';
 
   constructor(private favoriteService: FavoriteService) {}
 
+  ngOnInit(): void {
+    this.isFavorited = this.verifyFavorite();
+  }
+
   onClick() {
     if (this.isFavorited) {
+      this.favoriteService.removeFavorite(this.pokemonProps.id);
+      this.isFavorited = this.verifyFavorite();
       return;
     }
     this.favoriteService.putFavorite(this.pokemonProps.id);
+    this.isFavorited = this.verifyFavorite();
   }
 
   onCardClick() {
@@ -29,5 +36,9 @@ export class PokemonCardComponent {
 
   toggleModalVisibility() {
     this.modalVisibility = !this.modalVisibility;
+  }
+
+  verifyFavorite() {
+    return this.favoriteService.getFromStorage().includes(this.pokemonProps.id);
   }
 }

@@ -14,7 +14,11 @@ export class FavoriteService {
     this.saveOnStorage(favorites);
   }
 
-  getFavorites() {}
+  removeFavorite(pokemonId: number) {
+    const favorites = this.getFromStorage();
+    const resultingArr = favorites.filter((id) => id !== pokemonId);
+    this.saveOnStorage(resultingArr);
+  }
 
   saveOnStorage(favArr: number[]): void {
     const stringfiedObj = JSON.stringify(favArr);

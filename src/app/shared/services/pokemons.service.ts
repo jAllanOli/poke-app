@@ -101,9 +101,9 @@ export class PokemonsService {
     );
   }
 
-  getPokemonDetails(pokemonName: string) {
+  getPokemonDetails(pokemonIdentifier: string | number) {
     return this.http.get<PokemonDetails>(
-      `${this.baseUrl}/pokemon/${pokemonName}`
+      `${this.baseUrl}/pokemon/${pokemonIdentifier}`
     );
   }
 }
