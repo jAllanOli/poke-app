@@ -50,9 +50,9 @@ export class PokemonsListComponent implements OnInit {
   }
 
   nextPage() {
-    if (this.currentPage > this.totalItems / 12) return;
+    if (this.currentPage > this.totalItems / 8) return;
     this.currentPage++;
-    this.fetchPokemons(this.currentPage * 12);
+    this.fetchPokemons(this.currentPage * 8);
   }
 
   previousPage() {
