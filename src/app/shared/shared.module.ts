@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AlertModalComponent } from './alert-modal/alert-modal.component';
-import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
-import { DetailsModalComponent } from './details-modal/details-modal.component';
+import { AlertModalComponent } from './components/alert-modal/alert-modal.component';
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
+import { DetailsModalComponent } from './components/details-modal/details-modal.component';
 
 @NgModule({
   declarations: [

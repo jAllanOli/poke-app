@@ -97,7 +97,7 @@ export class PokemonsService {
 
   getPokemons(offset = 0) {
     return this.http.get<ApiInitialResponse>(
-      `${this.baseUrl}/pokemon/?limit=8&offset=${offset}`
+      `${this.baseUrl}/pokemon/?limit=20&offset=${offset}`
     );
   }
 

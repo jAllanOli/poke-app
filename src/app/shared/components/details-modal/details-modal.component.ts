@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MoveDetail, PokemonDetails } from '../services/pokemons.service';
+import { MoveDetail, PokemonDetails } from '../../services/pokemons.service';
 
 @Component({
   selector: 'app-details-modal',

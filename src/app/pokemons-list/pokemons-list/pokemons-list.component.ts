@@ -31,6 +31,7 @@ export class PokemonsListComponent implements OnInit {
       .getPokemons(offset)
       .pipe(
         map(({ results, count }) => {
+          console.log(count);
           this.totalItems = count;
           return results.map(({ name }) => name);
         }),
@@ -50,9 +51,13 @@ export class PokemonsListComponent implements OnInit {
   }
 
   nextPage() {
-    if (this.currentPage > this.totalItems / 8) return;
+    if (this.currentPage + 1 >= this.totalItems / 20) {
+      this.toggleModalVisibility();
+      this.modalMessage = 'Already on last page';
+      return;
+    }
     this.currentPage++;
-    this.fetchPokemons(this.currentPage * 8);
+    this.fetchPokemons(this.currentPage * 20);
   }
 
   previousPage() {

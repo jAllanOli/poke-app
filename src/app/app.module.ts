@@ -7,9 +7,10 @@ import { AppComponent } from './app.component';
 import { PokemonsListModule } from './pokemons-list/pokemons-list.module';
 import { PokeSearchModule } from './poke-search/poke-search.module';
 import { FavoritePokemonModule } from './favorite-pokemon/favorite-pokemon.module';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

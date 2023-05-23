@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PokemonDetails } from 'src/app/shared/services/pokemons.service';
-import { FavoriteService } from '../services/favorite.service';
+import { FavoriteService } from '../../services/favorite.service';
 
 @Component({
   selector: 'app-pokemon-card',
