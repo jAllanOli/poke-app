@@ -1,15 +1,21 @@
 <main class="main-container list-container">
   <h1 class="title">Favorite Pokemons</h1>
-  <div class="grid-container">
+  <div
+    class="grid-container"
+    *ngIf="favoritePokemonIds.length; else noFavorite"
+  >
     <app-pokemon-card
       (favoriteUpdate)="updateFavorites()"
       *ngFor="let pokemon of favoritePokemons"
       [pokemonProps]="pokemon"
     ></app-pokemon-card>
   </div>
-  <div *ngIf="!favoritePokemonIds.length" class="no-favorites-message">
+</main>
+
+<ng-template #noFavorite>
+  <div class="no-favorites-message">
     <p>There is no favorite Pokemon, go</p>
     <a href="http://localhost:4200/pokemons-list">Add one</a>
     <img src="../../../assets/images/pokeball-fav-page.png" alt="" />
   </div>
-</main>
+</ng-template>
