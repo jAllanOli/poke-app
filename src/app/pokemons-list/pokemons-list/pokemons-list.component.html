@@ -6,24 +6,7 @@
 <main class="main-container list-container">
   <header class="list-header">
     <h1 class="title">Pokemons</h1>
-    <div class="buttons-container">
-      <app-button (click)="previousPage()">
-        <app-svg
-          icon="sng-arrow-left"
-          color="#282832"
-          hoverColor="#dee7e7"
-        ></app-svg>
-      </app-button>
-      <app-button label="1"></app-button>
-      <app-button (click)="nextPage()">
-        <app-svg
-          appSvgHover
-          icon="sng-arrow-right"
-          color="#282832"
-          hoverColor="#dee7e7"
-        ></app-svg>
-      </app-button>
-    </div>
+    <app-pagination></app-pagination>
   </header>
   <img
     class="loading-img"

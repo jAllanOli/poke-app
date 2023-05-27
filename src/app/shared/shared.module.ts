@@ -24,6 +24,7 @@ import { SvgHoverDirective } from './directives/svg-hover.directive';
     PokemonCardComponent,
     DetailsModalComponent,
     ButtonComponent,
+    PaginationComponent,
     SvgComponent,
     SvgHoverDirective,
   ],

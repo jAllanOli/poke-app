@@ -1,4 +1,4 @@
 <button class="btn">
-  {{ label }}
+  <span *ngIf="label" class="btn__label">{{ label }}</span>
   <ng-content></ng-content>
 </button>
