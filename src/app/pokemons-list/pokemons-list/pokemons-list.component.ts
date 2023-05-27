@@ -21,7 +21,7 @@ export class PokemonsListComponent implements OnInit {
 
   constructor(private service: PokemonsService) {}
   ngOnInit(): void {
-    this.fetchPokemons();
+    this.fetchPokemons(this.currentPage);
   }
 
   fetchPokemons(offset = 0) {
@@ -31,7 +31,6 @@ export class PokemonsListComponent implements OnInit {
       .getPokemons(offset)
       .pipe(
         map(({ results, count }) => {
-          console.log(count);
           this.totalItems = count;
           return results.map(({ name }) => name);
         }),

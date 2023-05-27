@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./button.component.less'],
 })
 export class ButtonComponent {
-  @Input() label!: string;
+  @Input() label!: string | number;
 }
