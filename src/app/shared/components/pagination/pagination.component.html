@@ -1,0 +1,68 @@
+<app-alert-modal
+  *ngIf="modalVisibility"
+  [alertMessage]="modalMessage"
+  (modalVisibility)="toggleModalVisibility()"
+></app-alert-modal>
+<div class="buttons-container" *ngIf="pages.length">
+  <button class="btn nav-item" (click)="previousPage()">
+    <app-svg
+      icon="sng-arrow-left"
+      color="#282832"
+      hoverColor="#dee7e7"
+    ></app-svg>
+  </button>
+  <button
+    class="btn nav-item"
+    [class.selected]="pages[0].isSelected"
+    (click)="selectPage(pages[0].pageNumber)"
+  >
+    {{ pages[0].pageNumber }}
+  </button>
+
+  <button *ngIf="currentPage > 4" class="btn nav-item" (click)="jumpBackward()">
+    <app-svg
+      icon="ellipsis"
+      navigationSide="left"
+      color="#282832"
+      hoverColor="#dee7e7"
+    ></app-svg>
+  </button>
+
+  <button
+    class="btn nav-item"
+    *ngFor="let pageBtn of visiblePageBtns()"
+    [class.selected]="pageBtn.isSelected"
+    (click)="selectPage(pageBtn.pageNumber)"
+  >
+    {{ pageBtn.pageNumber }}
+  </button>
+
+  <button
+    class="btn nav-item"
+    *ngIf="currentPage < pages.length - 3"
+    (click)="jumpForward()"
+  >
+    <app-svg
+      icon="ellipsis"
+      navigationSide="right"
+      color="#282832"
+      hoverColor="#dee7e7"
+    ></app-svg>
+  </button>
+
+  <button
+    class="btn nav-item"
+    [class.selected]="pages[pages.length - 1].isSelected"
+    (click)="selectPage(pages[pages.length - 1].pageNumber)"
+  >
+    {{ pages[pages.length - 1].pageNumber }}
+  </button>
+  <button class="btn nav-item" (click)="nextPage()">
+    <app-svg
+      appSvgHover
+      icon="sng-arrow-right"
+      color="#282832"
+      hoverColor="#dee7e7"
+    ></app-svg>
+  </button>
+</div>

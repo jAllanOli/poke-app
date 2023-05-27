@@ -16,12 +16,10 @@ export class PokemonsListComponent implements OnInit {
   isLoading!: boolean;
   currentPage = 0;
   totalItems!: number;
-  modalVisibility = false;
-  modalMessage!: string;
 
   constructor(private service: PokemonsService) {}
   ngOnInit(): void {
-    this.fetchPokemons();
+    this.fetchPokemons(this.currentPage);
   }
 
   fetchPokemons(offset = 0) {
@@ -31,7 +29,6 @@ export class PokemonsListComponent implements OnInit {
       .getPokemons(offset)
       .pipe(
         map(({ results, count }) => {
-          console.log(count);
           this.totalItems = count;
           return results.map(({ name }) => name);
         }),
@@ -50,27 +47,12 @@ export class PokemonsListComponent implements OnInit {
       );
   }
 
-  nextPage() {
-    if (this.currentPage + 1 >= this.totalItems / 20) {
-      this.toggleModalVisibility();
-      this.modalMessage = 'Already on last page';
-      return;
-    }
-    this.currentPage++;
-    this.fetchPokemons(this.currentPage * 20);
+  handleNavigation(pageNumber: number) {
+    this.currentPage = pageNumber;
+    this.navigate();
   }
 
-  previousPage() {
-    if (this.currentPage === 0) {
-      this.toggleModalVisibility();
-      this.modalMessage = 'Already on first page';
-      return;
-    }
-    this.currentPage--;
-    this.fetchPokemons(this.currentPage * 12);
-  }
-
-  toggleModalVisibility() {
-    this.modalVisibility = !this.modalVisibility;
+  navigate() {
+    this.fetchPokemons((this.currentPage - 1) * 20);
   }
 }

@@ -1,15 +1,10 @@
-<app-alert-modal
-  *ngIf="modalVisibility"
-  [alertMessage]="modalMessage"
-  (modalVisibility)="toggleModalVisibility()"
-></app-alert-modal>
 <main class="main-container list-container">
   <header class="list-header">
     <h1 class="title">Pokemons</h1>
-    <div class="buttons-container">
-      <button class="btn" (click)="previousPage()">Previous</button>
-      <button class="btn" (click)="nextPage()">Next</button>
-    </div>
+    <app-pagination
+      [qtdOfItems]="totalItems"
+      (navigate)="handleNavigation($event)"
+    ></app-pagination>
   </header>
   <img
     class="loading-img"

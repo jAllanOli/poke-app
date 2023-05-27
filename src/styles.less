@@ -36,35 +36,6 @@ body {
   color: var(--light-gray-2);
 }
 
-.btn {
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  padding: 0.5rem 0;
-  width: 120px;
-  font-weight: 700;
-  font-size: 18px;
-  background-color: var(--light-gray-2);
-  color: var(--dark-gray);
-  transition: all 500ms ease;
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--red);
-    color: var(--light-gray-2);
-    transition: all 500ms ease;
-  }
-
-  &:active {
-    background-color: var(--dark-red);
-  }
-
-  @media (max-width: 680px) {
-    width: 100px;
-    font-size: 14px;
-  }
-}
-
 .loading-img {
   align-self: center;
   width: 200px;
@@ -108,6 +79,34 @@ body {
 
   & img {
     width: 18px;
+  }
+}
+
+.btn {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  background-color: var(--light-gray-2);
+  color: var(--dark-gray);
+  transition: all 500ms ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--red);
+    color: var(--light-gray-2);
+    transition: all 500ms ease;
+  }
+
+  &:active {
+    background-color: var(--dark-red);
+  }
+
+  @media (max-width: 680px) {
+    font-size: 14px;
   }
 }
 
