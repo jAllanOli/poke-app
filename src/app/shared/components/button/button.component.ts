@@ -5,6 +5,4 @@ import { Component, Input } from '@angular/core';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.less'],
 })
-export class ButtonComponent {
-  @Input() label!: string | number;
-}
+export class ButtonComponent {}

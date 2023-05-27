@@ -1,14 +1,4 @@
-import {
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewChecked,
-  Component,
-  DoCheck,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, Output } from '@angular/core';
 
 interface Page {
   pageNumber: number;
@@ -24,16 +14,13 @@ export class PaginationComponent implements DoCheck {
   @Output() navigate = new EventEmitter();
   @Input() qtdOfItems!: number;
   @Input() itemsPerPage = 20;
-  currentPage!: Page;
+  currentPage = 0;
   pages: Page[] = [];
 
   ngDoCheck(): void {
-    if (!this.pages.length) {
+    if (this.qtdOfItems && !this.pages.length) {
       this.buildPages();
-      if (this.pages.length) {
-        console.log(this.pages);
-        this.selectPage(this.pages[0].pageNumber);
-      }
+      this.selectPage(1);
     }
   }
 
@@ -52,7 +39,8 @@ export class PaginationComponent implements DoCheck {
   }
 
   selectPage(pageNumber: number): void {
-    if (pageNumber === this.getCurrentPage().pageNumber) {
+    if (pageNumber === this.currentPage) {
+      console.log('entrou onde n devia');
       return;
     }
     if (this.pages) {
@@ -60,5 +48,18 @@ export class PaginationComponent implements DoCheck {
     }
 
     const page = this.pages[pageNumber - 1];
+    page.isSelected = true;
+
+    this.currentPage = page.pageNumber;
+
+    this.navigate.emit(page.pageNumber);
+  }
+
+  previousPage() {
+    this.selectPage(this.currentPage - 1);
+  }
+
+  nextPage() {
+    this.selectPage(this.currentPage + 1);
   }
 }

@@ -49,6 +49,16 @@ export class PokemonsListComponent implements OnInit {
       );
   }
 
+  handleNavigation(pageNumber: number) {
+    console.log(pageNumber);
+    this.currentPage = pageNumber;
+    this.navigate();
+  }
+
+  navigate() {
+    this.fetchPokemons((this.currentPage - 1) * 20);
+  }
+
   nextPage() {
     if (this.currentPage + 1 >= this.totalItems / 20) {
       this.toggleModalVisibility();
