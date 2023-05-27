@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { AlertModalComponent } from './components/alert-modal/alert-modal.component';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { DetailsModalComponent } from './components/details-modal/details-modal.component';
-import { ButtonComponent } from './components/button/button.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SvgComponent } from './components/svg/svg.component';
 import { SvgHoverDirective } from './directives/svg-hover.directive';
@@ -13,7 +12,6 @@ import { SvgHoverDirective } from './directives/svg-hover.directive';
     AlertModalComponent,
     PokemonCardComponent,
     DetailsModalComponent,
-    ButtonComponent,
     PaginationComponent,
     SvgComponent,
     SvgHoverDirective,
@@ -23,7 +21,6 @@ import { SvgHoverDirective } from './directives/svg-hover.directive';
     AlertModalComponent,
     PokemonCardComponent,
     DetailsModalComponent,
-    ButtonComponent,
     PaginationComponent,
     SvgComponent,
     SvgHoverDirective,

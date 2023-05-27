@@ -1,45 +1,54 @@
+<app-alert-modal
+  *ngIf="modalVisibility"
+  [alertMessage]="modalMessage"
+  (modalVisibility)="toggleModalVisibility()"
+></app-alert-modal>
 <div class="buttons-container" *ngIf="pages.length">
-  <app-button (click)="previousPage()">
+  <button class="btn" (click)="previousPage()">
     <app-svg
       icon="sng-arrow-left"
       color="#282832"
       hoverColor="#dee7e7"
     ></app-svg>
-  </app-button>
-  <app-button
+  </button>
+  <button
+    class="btn"
     [class.selected]="pages[0].isSelected"
     (click)="selectPage(pages[0].pageNumber)"
-    >{{ pages[0].pageNumber }}</app-button
   >
-  <app-button>
+    {{ pages[0].pageNumber }}
+  </button>
+  <button class="btn">
     <app-svg
       icon="ellipsis"
       navigationSide="left"
       color="#282832"
       hoverColor="#dee7e7"
     ></app-svg>
-  </app-button>
+  </button>
 
-  <app-button>
+  <button class="btn">
     <app-svg
       icon="ellipsis"
       navigationSide="right"
       color="#282832"
       hoverColor="#dee7e7"
     ></app-svg>
-  </app-button>
+  </button>
 
-  <app-button
+  <button
+    class="btn"
     [class.selected]="pages[pages.length - 1].isSelected"
     (click)="selectPage(pages[pages.length - 1].pageNumber)"
-    >{{ pages[pages.length - 1].pageNumber }}</app-button
   >
-  <app-button (click)="nextPage()">
+    {{ pages[pages.length - 1].pageNumber }}
+  </button>
+  <button (click)="nextPage()" class="btn">
     <app-svg
       appSvgHover
       icon="sng-arrow-right"
       color="#282832"
       hoverColor="#dee7e7"
     ></app-svg>
-  </app-button>
+  </button>
 </div>

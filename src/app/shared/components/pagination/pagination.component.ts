@@ -17,6 +17,9 @@ export class PaginationComponent implements DoCheck {
   currentPage = 0;
   pages: Page[] = [];
 
+  modalVisibility = false;
+  modalMessage!: string;
+
   ngDoCheck(): void {
     if (this.qtdOfItems && !this.pages.length) {
       this.buildPages();
@@ -56,10 +59,24 @@ export class PaginationComponent implements DoCheck {
   }
 
   previousPage() {
+    if (this.currentPage === 1) {
+      this.toggleModalVisibility();
+      this.modalMessage = 'Already on first page';
+      return;
+    }
     this.selectPage(this.currentPage - 1);
   }
 
   nextPage() {
+    if (this.currentPage === Math.ceil(this.qtdOfItems / this.itemsPerPage)) {
+      this.toggleModalVisibility();
+      this.modalMessage = 'Already on last page';
+      return;
+    }
     this.selectPage(this.currentPage + 1);
+  }
+
+  toggleModalVisibility() {
+    this.modalVisibility = !this.modalVisibility;
   }
 }
