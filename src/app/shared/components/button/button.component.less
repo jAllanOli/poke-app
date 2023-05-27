@@ -1,0 +1,26 @@
+.btn {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  font-size: 18px;
+  background-color: var(--light-gray-2);
+  color: var(--dark-gray);
+  transition: all 500ms ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--red);
+    color: var(--light-gray-2);
+    transition: all 500ms ease;
+  }
+
+  &:active {
+    background-color: var(--dark-red);
+  }
+
+  @media (max-width: 680px) {
+    font-size: 14px;
+  }
+}
