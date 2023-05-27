@@ -48,7 +48,6 @@ export class PokemonsListComponent implements OnInit {
   }
 
   handleNavigation(pageNumber: number) {
-    console.log(pageNumber);
     this.currentPage = pageNumber;
     this.navigate();
   }
@@ -56,28 +55,4 @@ export class PokemonsListComponent implements OnInit {
   navigate() {
     this.fetchPokemons((this.currentPage - 1) * 20);
   }
-
-  // nextPage() {
-  //   if (this.currentPage + 1 >= this.totalItems / 20) {
-  //     this.toggleModalVisibility();
-  //     this.modalMessage = 'Already on last page';
-  //     return;
-  //   }
-  //   this.currentPage++;
-  //   this.fetchPokemons(this.currentPage * 20);
-  // }
-
-  // previousPage() {
-  //   if (this.currentPage === 0) {
-  //     this.toggleModalVisibility();
-  //     this.modalMessage = 'Already on first page';
-  //     return;
-  //   }
-  //   this.currentPage--;
-  //   this.fetchPokemons(this.currentPage * 12);
-  // }
-
-  // toggleModalVisibility() {
-  //   this.modalVisibility = !this.modalVisibility;
-  // }
 }

@@ -67,7 +67,7 @@ export class PaginationComponent implements DoCheck {
     this.selectPage(this.currentPage - 1);
   }
 
-  nextPage() {
+  nextPage(): void {
     if (this.currentPage === Math.ceil(this.qtdOfItems / this.itemsPerPage)) {
       this.toggleModalVisibility();
       this.modalMessage = 'Already on last page';
@@ -76,7 +76,43 @@ export class PaginationComponent implements DoCheck {
     this.selectPage(this.currentPage + 1);
   }
 
-  toggleModalVisibility() {
+  toggleModalVisibility(): void {
     this.modalVisibility = !this.modalVisibility;
+  }
+
+  jumpForward(): void {
+    if (this.currentPage > this.pages.length - 5) {
+      this.selectPage(this.pages.length);
+      return;
+    }
+    this.selectPage(this.currentPage + 5);
+  }
+
+  jumpBackward(): void {
+    if (this.currentPage < 6) {
+      this.selectPage(1);
+      return;
+    }
+    this.selectPage(this.currentPage - 5);
+  }
+
+  visiblePageBtns(): Page[] {
+    const currentPage = this.getCurrentPage().pageNumber;
+    const pagesLength = this.pages.length;
+    const currentPageIndex = this.pages.indexOf(this.getCurrentPage());
+
+    if (currentPage < 4) {
+      return this.pages.slice(1, 5);
+    } else if (currentPage === 4) {
+      return this.pages.slice(1, 6);
+    } else if (currentPage <= pagesLength - 3) {
+      return this.pages.slice(currentPageIndex - 2, currentPageIndex + 3);
+    } else if (currentPage < pagesLength - 1) {
+      return this.pages.slice(currentPageIndex - 2, currentPageIndex + 2);
+    } else if (currentPage < pagesLength) {
+      return this.pages.slice(currentPageIndex - 3, currentPageIndex + 1);
+    } else {
+      return this.pages.slice(currentPageIndex - 4, currentPageIndex);
+    }
   }
 }
