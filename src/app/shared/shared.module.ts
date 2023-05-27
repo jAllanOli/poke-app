@@ -4,6 +4,9 @@ import { AlertModalComponent } from './components/alert-modal/alert-modal.compon
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { DetailsModalComponent } from './components/details-modal/details-modal.component';
 import { ButtonComponent } from './components/button/button.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { SvgComponent } from './components/svg/svg.component';
+import { SvgHoverDirective } from './directives/svg-hover.directive';
 
 @NgModule({
   declarations: [
@@ -11,6 +14,9 @@ import { ButtonComponent } from './components/button/button.component';
     PokemonCardComponent,
     DetailsModalComponent,
     ButtonComponent,
+    PaginationComponent,
+    SvgComponent,
+    SvgHoverDirective,
   ],
   imports: [CommonModule],
   exports: [
@@ -18,6 +24,8 @@ import { ButtonComponent } from './components/button/button.component';
     PokemonCardComponent,
     DetailsModalComponent,
     ButtonComponent,
+    SvgComponent,
+    SvgHoverDirective,
   ],
 })
 export class SharedModule {}
