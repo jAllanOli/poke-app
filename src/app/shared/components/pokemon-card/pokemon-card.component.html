@@ -23,7 +23,7 @@
     alt="pokemon"
   />
   <h3 (click)="onCardClick()">
-    {{ pokemonProps.name.replaceAll("-", " ") | titlecase }}
+    {{ pokemonProps.name | snakeToNormalCase | titlecase }}
   </h3>
   <div class="card__types-container">
     <img

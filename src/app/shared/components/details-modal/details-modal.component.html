@@ -2,7 +2,7 @@
   <div class="modal pokemon-details">
     <header class="pokemon-details__header">
       <h2>
-        {{ pokemonProps.name | titlecase }}
+        {{ pokemonProps.name | snakeToNormalCase | titlecase }}
       </h2>
       <button class="close-btn" (click)="onClose()">
         <img src="../../../assets/icons/botao-x.png" alt="" />
@@ -31,7 +31,7 @@
             *ngFor="let ability of pokemonProps.abilities"
             class="detail-section__text"
           >
-            {{ ability.ability.name.replace("-", " ") | titlecase }}
+            {{ ability.ability.name | snakeToNormalCase | titlecase }}
           </li>
         </ul>
       </div>
