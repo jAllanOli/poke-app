@@ -16,10 +16,15 @@
 
   <img
     class="card__sprite"
-    [src]="pokemonProps.sprites.front_default"
+    [src]="
+      pokemonProps.sprites.front_default ??
+      '../../../../assets/images/pokeball-fav-page.png'
+    "
     alt="pokemon"
   />
-  <h3 (click)="onCardClick()">{{ pokemonProps.name | titlecase }}</h3>
+  <h3 (click)="onCardClick()">
+    {{ pokemonProps.name.replaceAll("-", " ") | titlecase }}
+  </h3>
   <div class="card__types-container">
     <img
       *ngFor="let type of pokemonProps.types"
