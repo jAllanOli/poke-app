@@ -19,7 +19,7 @@ export class PokemonsListComponent implements OnInit {
 
   constructor(private service: PokemonsService) {}
   ngOnInit(): void {
-    this.fetchPokemons(this.currentPage);
+    this.getPokemonsQtd();
   }
 
   fetchPokemons(offset = 0) {
@@ -28,10 +28,7 @@ export class PokemonsListComponent implements OnInit {
     this.service
       .getPokemons(offset)
       .pipe(
-        map(({ results, count }) => {
-          this.totalItems = count;
-          return results.map(({ name }) => name);
-        }),
+        map(({ results }) => results.map(({ name }) => name)),
         mergeMap((names) =>
           from(names).pipe(
             concatMap((name) => this.service.getPokemonDetails(name))
@@ -45,6 +42,13 @@ export class PokemonsListComponent implements OnInit {
           this.pokemons.push(pokemon);
         })
       );
+  }
+
+  getPokemonsQtd(): void {
+    this.service
+      .getPokemons()
+      .pipe(map((response) => (this.totalItems = response.count)))
+      .subscribe();
   }
 
   handleNavigation(pageNumber: number) {
