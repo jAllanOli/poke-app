@@ -33,6 +33,7 @@ export class PokemonCardComponent implements OnInit {
   }
 
   onCardClick() {
+    console.log(this.pokemonProps);
     this.modalVisibility = true;
   }
 

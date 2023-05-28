@@ -6,6 +6,7 @@ import { DetailsModalComponent } from './components/details-modal/details-modal.
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SvgComponent } from './components/svg/svg.component';
 import { SvgHoverDirective } from './directives/svg-hover.directive';
+import { SnakeToNormalCasePipe } from './pipes/snake-to-normal-case.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SvgHoverDirective } from './directives/svg-hover.directive';
     PaginationComponent,
     SvgComponent,
     SvgHoverDirective,
+    SnakeToNormalCasePipe,
   ],
   imports: [CommonModule],
   exports: [
@@ -24,6 +26,7 @@ import { SvgHoverDirective } from './directives/svg-hover.directive';
     PaginationComponent,
     SvgComponent,
     SvgHoverDirective,
+    SnakeToNormalCasePipe,
   ],
 })
 export class SharedModule {}
