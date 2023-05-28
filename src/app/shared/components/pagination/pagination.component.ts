@@ -1,4 +1,12 @@
-import { Component, DoCheck, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 interface Page {
   pageNumber: number;
@@ -10,7 +18,8 @@ interface Page {
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.less'],
 })
-export class PaginationComponent implements DoCheck {
+export class PaginationComponent implements DoCheck, OnChanges {
+  @Input() loading!: boolean;
   @Output() navigate = new EventEmitter();
   @Input() qtdOfItems!: number;
   @Input() itemsPerPage = 20;
@@ -19,6 +28,8 @@ export class PaginationComponent implements DoCheck {
 
   modalVisibility = false;
   modalMessage!: string;
+
+  ngOnChanges(changes: SimpleChanges): void {}
 
   ngDoCheck(): void {
     if (this.qtdOfItems && !this.pages.length) {
@@ -46,7 +57,7 @@ export class PaginationComponent implements DoCheck {
       console.log('entrou onde n devia');
       return;
     }
-    if (this.pages) {
+    if (this.pages && !this.loading) {
       this.pages.forEach((page) => (page.isSelected = false));
     }
 

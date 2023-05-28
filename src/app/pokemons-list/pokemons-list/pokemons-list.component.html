@@ -2,6 +2,7 @@
   <header class="list-header">
     <h1 class="title">Pokemons</h1>
     <app-pagination
+      [loading]="isLoading"
       [qtdOfItems]="totalItems"
       (navigate)="handleNavigation($event)"
     ></app-pagination>
