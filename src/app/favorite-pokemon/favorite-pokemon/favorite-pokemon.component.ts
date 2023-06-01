@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { take } from 'rxjs';
 
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
@@ -18,7 +19,8 @@ export class FavoritePokemonComponent implements OnInit {
 
   constructor(
     private favoritePokemonService: FavoriteService,
-    private pokemonsService: PokemonsService
+    private pokemonsService: PokemonsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,5 +40,9 @@ export class FavoritePokemonComponent implements OnInit {
         .pipe(take(1))
         .subscribe((data) => this.favoritePokemons.push(data));
     });
+  }
+
+  goToList() {
+    this.router.navigate(['/pokemons-list']);
   }
 }

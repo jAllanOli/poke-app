@@ -15,7 +15,7 @@
 <ng-template #noFavorite>
   <div class="no-favorites-message">
     <p>There is no favorite Pokemon, go</p>
-    <a href="http://localhost:4200/pokemons-list">Add one</a>
+    <a (click)="goToList()">Add one</a>
     <img src="../../../assets/images/pokeball-fav-page.png" alt="" />
   </div>
 </ng-template>
