@@ -8,9 +8,11 @@ import { PokemonsListModule } from './pokemons-list/pokemons-list.module';
 import { PokeSearchModule } from './poke-search/poke-search.module';
 import { FavoritePokemonModule } from './favorite-pokemon/favorite-pokemon.module';
 import { HeaderComponent } from './header/header.component';
+import { FullDetailsPageComponent } from './full-details-page/full-details-page.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, FullDetailsPageComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -18,6 +20,7 @@ import { HeaderComponent } from './header/header.component';
     PokemonsListModule,
     PokeSearchModule,
     FavoritePokemonModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

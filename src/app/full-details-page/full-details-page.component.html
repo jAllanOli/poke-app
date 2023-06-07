@@ -1,3 +1,10 @@
-<main class="main-container">
-  <h2>{{ pokemonData.name }}</h2>
+<img
+  class="loading-img"
+  *ngIf="isLoading"
+  src="../../../assets/icons/pokeball.gif"
+  alt="pokeball"
+/>
+<main *ngIf="!isLoading" class="main-container">
+  <h2 class="title">{{ pokemonData.name }}</h2>
+  <p>{{ genera | snakeToNormalCase | titlecase }}</p>
 </main>

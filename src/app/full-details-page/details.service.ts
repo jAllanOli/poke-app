@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { evolutionChain } from '../shared/types/evolution';
 import { Location } from '../shared/types/location';
+import { PokemonSpecies } from '../shared/types/species';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +12,9 @@ import { Location } from '../shared/types/location';
 export class DetailsService {
   constructor(private http: HttpClient) {}
 
-  getPokemonSpecies(id: number) {
+  getPokemonSpecies(id: number): Observable<PokemonSpecies> {
     const baseUrl = 'https://pokeapi.co/api/v2/pokemon-species';
-    return this.http.get(`${baseUrl}/${id}`);
+    return this.http.get<PokemonSpecies>(`${baseUrl}/${id}`);
   }
 
   getPokemonEvolutionFamily(url: string): Observable<evolutionChain> {
