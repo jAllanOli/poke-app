@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { concatMap, finalize, from, map, mergeMap, toArray } from 'rxjs';
 
-import {
-  PokemonDetails,
-  PokemonsService,
-} from 'src/app/shared/services/pokemons.service';
+import { PokemonsService } from 'src/app/shared/services/pokemons.service';
+import { PokemonDetails } from 'src/app/shared/types/pokemon';
 
 @Component({
   selector: 'app-pokemons-list',

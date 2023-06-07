@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { take } from 'rxjs';
-import {
-  PokemonDetails,
-  PokemonsService,
-} from 'src/app/shared/services/pokemons.service';
+
+import { PokemonsService } from 'src/app/shared/services/pokemons.service';
+import { PokemonDetails } from 'src/app/shared/types/pokemon';
 
 @Component({
   selector: 'app-poke-search',

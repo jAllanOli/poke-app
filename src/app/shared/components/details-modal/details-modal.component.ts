@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MoveDetail, PokemonDetails } from '../../services/pokemons.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { MoveDetail } from '../../types/move';
+import { PokemonDetails } from '../../types/pokemon';
 
 @Component({
   selector: 'app-details-modal',
@@ -10,6 +13,8 @@ export class DetailsModalComponent implements OnInit {
   @Input() pokemonProps!: PokemonDetails;
   @Output() modalVisibility = new EventEmitter();
   levelUpMoves!: MoveDetail[];
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.levelUpMoves = this.getPokemonMoves();
@@ -32,5 +37,10 @@ export class DetailsModalComponent implements OnInit {
         );
       });
     return orderedArray;
+  }
+
+  navigateToDetailsPage() {
+    const id = this.pokemonProps.id;
+    this.router.navigate(['/' + id]);
   }
 }

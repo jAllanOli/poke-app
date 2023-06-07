@@ -3,10 +3,8 @@ import { Router } from '@angular/router';
 import { take } from 'rxjs';
 
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
-import {
-  PokemonDetails,
-  PokemonsService,
-} from 'src/app/shared/services/pokemons.service';
+import { PokemonsService } from 'src/app/shared/services/pokemons.service';
+import { PokemonDetails } from 'src/app/shared/types/pokemon';
 
 @Component({
   selector: 'app-favorite-pokemon',

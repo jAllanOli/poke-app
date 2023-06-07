@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PokemonDetails } from 'src/app/shared/services/pokemons.service';
+
 import { FavoriteService } from '../../services/favorite.service';
+import { PokemonDetails } from '../../types/pokemon';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -33,7 +34,6 @@ export class PokemonCardComponent implements OnInit {
   }
 
   onCardClick() {
-    console.log(this.pokemonProps);
     this.modalVisibility = true;
   }
 
