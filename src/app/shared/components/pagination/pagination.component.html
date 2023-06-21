@@ -1,7 +1,7 @@
 <app-alert-modal
   *ngIf="modalVisibility"
   [alertMessage]="modalMessage"
-  (modalVisibility)="toggleModalVisibility()"
+  (close)="toggleModalVisibility()"
 ></app-alert-modal>
 <div class="buttons-container" *ngIf="pages.length">
   <button class="btn nav-item" [disabled]="loading" (click)="previousPage()">

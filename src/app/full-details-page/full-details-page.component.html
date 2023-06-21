@@ -4,7 +4,39 @@
   src="../../../assets/icons/pokeball.gif"
   alt="pokeball"
 />
-<main *ngIf="!isLoading" class="main-container">
-  <h2 class="title">{{ pokemonData.name }}</h2>
-  <p>{{ genera | snakeToNormalCase | titlecase }}</p>
+<main *ngIf="!isLoading" class="main-container details-container">
+  <h1 class="title">{{ pokemonData.name | snakeToNormalCase | titlecase }}</h1>
+  <h4>{{ genera | snakeToNormalCase | titlecase }}</h4>
+  <div class="sprites-container" *ngIf="pokemonBasicDetails">
+    <div class="sprites-container__inputs">
+      <select
+        name="generationPicker"
+        id="generationPicker"
+        [(ngModel)]="selectedGeneration"
+        (change)="updateVersions()"
+      >
+        <option
+          *ngFor="let generation of generationOptions"
+          [value]="generation"
+        >
+          {{ generation }}
+        </option>
+      </select>
+      <select
+        name="versionPicker"
+        id="versionPicker"
+        [(ngModel)]="versionSelected"
+        (ngModelChange)="setGameVersion($event)"
+      >
+        <option selected disabled [value]="versionSelected">Pick a game</option>
+        <option *ngFor="let version of versionOptions" [ngValue]="version">
+          {{ version }}
+        </option>
+      </select>
+    </div>
+
+    <div class="sprites-container__images-grid" *ngIf="sprites.length">
+      <img *ngFor="let sprite of sprites" [src]="sprite" alt="" />
+    </div>
+  </div>
 </main>

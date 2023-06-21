@@ -10,12 +10,14 @@ import { FavoritePokemonModule } from './favorite-pokemon/favorite-pokemon.modul
 import { HeaderComponent } from './header/header.component';
 import { FullDetailsPageComponent } from './full-details-page/full-details-page.component';
 import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FullDetailsPageComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     PokemonsListModule,
     PokeSearchModule,

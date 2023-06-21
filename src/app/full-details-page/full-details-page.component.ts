@@ -11,6 +11,8 @@ import { PokemonsService } from '../shared/services/pokemons.service';
 import { PokemonDetails } from '../shared/types/pokemon';
 import { DetailsService } from './details.service';
 import { PokemonSpecies } from '../shared/types/species';
+import { Sprites, VersionSprites } from '../shared/types/sprites';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-full-details-page',
@@ -20,8 +22,14 @@ import { PokemonSpecies } from '../shared/types/species';
 export class FullDetailsPageComponent implements OnInit {
   pokemonId!: number;
   pokemonData!: PokemonSpecies;
+  pokemonBasicDetails!: PokemonDetails;
   genera!: string;
   isLoading = true;
+  generationOptions!: string[];
+  selectedGeneration = 'generation-i';
+  versionOptions!: string[];
+  versionSelected!: string;
+  sprites: string[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -39,9 +47,62 @@ export class FullDetailsPageComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.filterEngGenera();
-        console.log(this.pokemonData);
+        //console.log(this.pokemonData);
       }
     );
+    this.pokemonsService
+      .getPokemonDetails(this.pokemonId)
+      .pipe(take(1))
+      .subscribe((data) => {
+        this.pokemonBasicDetails = data;
+        console.log(data);
+        this.generationOptions = Object.keys(
+          this.pokemonBasicDetails.sprites.versions!
+        );
+        this.updateVersions();
+      });
+  }
+
+  getVersionOptions() {
+    const generations = this.pokemonBasicDetails.sprites.versions!;
+    return Object.keys(
+      generations[this.selectedGeneration as keyof typeof generations]
+    );
+  }
+
+  updateVersions() {
+    this.versionOptions = this.getVersionOptions();
+  }
+
+  setGameVersion(event: string) {
+    this.versionSelected = event;
+    this.sprites = this.getSprites();
+  }
+
+  getSprites(): string[] {
+    const generations = this.pokemonBasicDetails.sprites.versions!;
+    const versions =
+      generations[this.selectedGeneration as keyof typeof generations];
+
+    const sprites: Sprites =
+      versions[this.versionSelected as keyof typeof versions];
+
+    const result = Object.values(sprites).filter(
+      (item) => typeof item === 'string'
+    );
+
+    const haveAnimations = Object.values(sprites).filter(
+      (item) => typeof item !== 'string'
+    );
+
+    if (haveAnimations.length) {
+      const animatedSprites = Object.values(
+        Object.values(sprites).filter((item) => typeof item !== 'string')[0]
+      );
+      animatedSprites.map((item) => result.push(item));
+    }
+
+    return result;
   }
 
   private filterEngGenera() {

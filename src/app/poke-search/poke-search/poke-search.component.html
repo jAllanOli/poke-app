@@ -1,7 +1,7 @@
 <app-alert-modal
   *ngIf="modalVisibility"
   [alertMessage]="modalMessage"
-  (modalVisibility)="toggleModalVisibility()"
+  (close)="toggleModalVisibility()"
 ></app-alert-modal>
 
 <main class="main-container">
