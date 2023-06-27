@@ -1,5 +1,10 @@
 .details-container {
   gap: 1rem;
+
+  h4 {
+    font-size: 1.5rem;
+    color: var(--light-gray-2);
+  }
 }
 
 .sprites-container {
@@ -19,15 +24,22 @@
   }
 
   &__images-grid {
-    display: grid;
+    position: relative;
+    display: flex;
     gap: 1rem;
-    grid-template-columns: repeat(6, 1fr);
     background-color: var(--light-gray-2);
-    padding: 1rem;
+    padding: 1.5rem;
+    max-width: max-content;
     border-radius: 5px;
 
-    & img {
-      min-width: 160px;
+    & .sprite {
+      width: 160px;
     }
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
   }
 }

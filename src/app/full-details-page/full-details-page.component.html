@@ -36,7 +36,19 @@
     </div>
 
     <div class="sprites-container__images-grid" *ngIf="sprites.length">
-      <img *ngFor="let sprite of sprites" [src]="sprite" alt="" />
+      <button class="close-btn btn">
+        <img
+          src="../../assets/icons/botao-x.png"
+          alt=""
+          (click)="closeSprites()"
+        />
+      </button>
+      <img
+        *ngFor="let sprite of sprites"
+        [src]="sprite"
+        alt=""
+        class="sprite"
+      />
     </div>
   </div>
 </main>

@@ -5,7 +5,6 @@ import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.com
 import { DetailsModalComponent } from './components/details-modal/details-modal.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SvgComponent } from './components/svg/svg.component';
-import { SvgHoverDirective } from './directives/svg-hover.directive';
 import { SnakeToNormalCasePipe } from './pipes/snake-to-normal-case.pipe';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { SnakeToNormalCasePipe } from './pipes/snake-to-normal-case.pipe';
     DetailsModalComponent,
     PaginationComponent,
     SvgComponent,
-    SvgHoverDirective,
     SnakeToNormalCasePipe,
   ],
   imports: [CommonModule],
@@ -25,7 +23,6 @@ import { SnakeToNormalCasePipe } from './pipes/snake-to-normal-case.pipe';
     DetailsModalComponent,
     PaginationComponent,
     SvgComponent,
-    SvgHoverDirective,
     SnakeToNormalCasePipe,
   ],
 })

@@ -1,17 +1,11 @@
-import {
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewInit,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { PokemonsService } from '../shared/services/pokemons.service';
 import { PokemonDetails } from '../shared/types/pokemon';
 import { DetailsService } from './details.service';
 import { PokemonSpecies } from '../shared/types/species';
-import { Sprites, VersionSprites } from '../shared/types/sprites';
+import { Sprites } from '../shared/types/sprites';
 import { take } from 'rxjs';
 
 @Component({
@@ -87,22 +81,31 @@ export class FullDetailsPageComponent implements OnInit {
     const sprites: Sprites =
       versions[this.versionSelected as keyof typeof versions];
 
+    console.log(sprites);
+
     const result = Object.values(sprites).filter(
-      (item) => typeof item === 'string'
+      (item) => item && typeof item === 'string'
+    );
+    console.log(result);
+    const haveAnimations = Object.values(sprites).filter(
+      (item) => item && typeof item !== 'string'
     );
 
-    const haveAnimations = Object.values(sprites).filter(
-      (item) => typeof item !== 'string'
-    );
+    console.log(haveAnimations);
 
     if (haveAnimations.length) {
-      const animatedSprites = Object.values(
-        Object.values(sprites).filter((item) => typeof item !== 'string')[0]
-      );
-      animatedSprites.map((item) => result.push(item));
+      const animatedSprites = Object.values(haveAnimations[0]);
+      console.log(animatedSprites);
+      animatedSprites.map((item) => item && result.push(item));
     }
 
     return result;
+  }
+
+  closeSprites() {
+    this.sprites = [];
+    this.selectedGeneration = 'generation-i';
+    this.versionSelected = '';
   }
 
   private filterEngGenera() {
