@@ -4,10 +4,15 @@
   src="../../../assets/icons/pokeball.gif"
   alt="pokeball"
 />
-<main *ngIf="!isLoading" class="main-container details-container">
+<main
+  *ngIf="!isLoading && pokemonBasicDetails"
+  class="main-container details-container"
+>
   <h1 class="title">{{ pokemonData.name | snakeToNormalCase | titlecase }}</h1>
-  <h4>{{ genera | snakeToNormalCase | titlecase }}</h4>
-  <div class="sprites-container" *ngIf="pokemonBasicDetails">
+  <h2>{{ genera | snakeToNormalCase | titlecase }}</h2>
+  <hr />
+  <section class="sprites-container info-container">
+    <h2>Sprites</h2>
     <div class="sprites-container__inputs">
       <select
         name="generationPicker"
@@ -50,5 +55,40 @@
         class="sprite"
       />
     </div>
-  </div>
+  </section>
+
+  <section class="stats-container info-container">
+    <h2>Base stats</h2>
+    <div
+      *ngFor="let stat of pokemonBasicDetails.stats"
+      class="stats-container__stat"
+    >
+      <p>{{ stat.stat.name | snakeToNormalCase | titlecase }}</p>
+      <span
+        [ngStyle]="{ 'width.px': (stat.base_stat / 255) * 300 }"
+        class="stat-bar"
+      >
+        {{ stat.base_stat }}
+      </span>
+    </div>
+  </section>
+
+  <section class="moves-container info-container">
+    <h2>Moves</h2>
+    <div class="moves-container__inputs">
+      <select
+        name="moveVersionPicker"
+        id="moveVersionPicker"
+        [(ngModel)]="selectedMoveVersion"
+      >
+        <option
+          *ngFor="let version of this.getVersionsAvaliable()"
+          [value]="version"
+        >
+          {{ version | snakeToNormalCase | titlecase }}
+        </option>
+      </select>
+    </div>
+  </section>
 </main>
+<button class="btn" (click)="getMovesDetailed()">moves</button>

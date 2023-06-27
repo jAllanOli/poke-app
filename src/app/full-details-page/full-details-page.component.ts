@@ -25,6 +25,8 @@ export class FullDetailsPageComponent implements OnInit {
   versionSelected!: string;
   sprites: string[] = [];
 
+  selectedMoveVersion!: string;
+
   constructor(
     private route: ActivatedRoute,
     private pokemonsService: PokemonsService,
@@ -102,6 +104,29 @@ export class FullDetailsPageComponent implements OnInit {
     this.selectedGeneration = 'generation-i';
     this.versionOptions = this.getVersionOptions();
     this.versionSelected = '';
+  }
+
+  getMovesDetailed() {
+    this.getVersionsAvaliable();
+    /* this.pokemonBasicDetails.moves.map((move) =>
+      move.version_group_details.map((version) =>
+        console.log(
+          move.move.name + ':' + version.move_learn_method.name,
+          version.version_group.name
+        )
+      )
+    ); */
+  }
+
+  getVersionsAvaliable() {
+    const versionOptions: Set<string> = new Set();
+    this.pokemonBasicDetails.moves.map((move) =>
+      move.version_group_details.map((version) => {
+        return versionOptions.add(version.version_group.name);
+      })
+    );
+
+    return versionOptions;
   }
 
   private filterEngGenera() {
