@@ -81,21 +81,16 @@ export class FullDetailsPageComponent implements OnInit {
     const sprites: Sprites =
       versions[this.versionSelected as keyof typeof versions];
 
-    console.log(sprites);
-
     const result = Object.values(sprites).filter(
       (item) => item && typeof item === 'string'
     );
-    console.log(result);
+
     const haveAnimations = Object.values(sprites).filter(
       (item) => item && typeof item !== 'string'
     );
 
-    console.log(haveAnimations);
-
     if (haveAnimations.length) {
       const animatedSprites = Object.values(haveAnimations[0]);
-      console.log(animatedSprites);
       animatedSprites.map((item) => item && result.push(item));
     }
 
@@ -105,6 +100,7 @@ export class FullDetailsPageComponent implements OnInit {
   closeSprites() {
     this.sprites = [];
     this.selectedGeneration = 'generation-i';
+    this.versionOptions = this.getVersionOptions();
     this.versionSelected = '';
   }
 

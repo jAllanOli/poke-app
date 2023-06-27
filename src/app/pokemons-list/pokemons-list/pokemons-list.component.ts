@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { concatMap, finalize, from, map, mergeMap, toArray } from 'rxjs';
 
 import { PokemonsService } from 'src/app/shared/services/pokemons.service';
@@ -9,15 +14,23 @@ import { PokemonDetails } from 'src/app/shared/types/pokemon';
   templateUrl: './pokemons-list.component.html',
   styleUrls: ['./pokemons-list.component.less'],
 })
-export class PokemonsListComponent implements OnInit {
+export class PokemonsListComponent implements OnInit, AfterViewChecked {
   pokemons: PokemonDetails[] = [];
   isLoading!: boolean;
   currentPage = 0;
   totalItems!: number;
 
-  constructor(private service: PokemonsService) {}
+  constructor(
+    private service: PokemonsService,
+    private changeDetector: ChangeDetectorRef
+  ) {}
+
   ngOnInit(): void {
     this.getPokemonsQtd();
+  }
+
+  ngAfterViewChecked(): void {
+    this.changeDetector.detectChanges();
   }
 
   fetchPokemons(offset = 0) {
@@ -45,8 +58,7 @@ export class PokemonsListComponent implements OnInit {
   getPokemonsQtd(): void {
     this.service
       .getPokemons()
-      .pipe(map((response) => (this.totalItems = response.count)))
-      .subscribe();
+      .subscribe((response) => (this.totalItems = response.count));
   }
 
   handleNavigation(pageNumber: number) {
