@@ -1,30 +1,38 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { PokemonsListComponent } from './pokemons-list/pokemons-list/pokemons-list.component';
-import { PokeSearchComponent } from './poke-search/poke-search/poke-search.component';
-import { FavoritePokemonComponent } from './favorite-pokemon/favorite-pokemon/favorite-pokemon.component';
 import { FullDetailsPageComponent } from './full-details-page/full-details-page.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '1' },
+  { path: '', pathMatch: 'full', redirectTo: 'pokemons-list' },
   {
     path: 'pokemons-list',
-    component: PokemonsListComponent,
+    loadChildren: () =>
+      import('./pokemons-list/pokemons-list.module').then(
+        (module) => module.PokemonsListModule
+      ),
   },
   {
     path: 'pokemon-search',
-    component: PokeSearchComponent,
+    loadChildren: () =>
+      import('./poke-search/poke-search.module').then(
+        (module) => module.PokeSearchModule
+      ),
   },
   {
     path: 'favorite-pokemon',
-    component: FavoritePokemonComponent,
+    loadChildren: () =>
+      import('./favorite-pokemon/favorite-pokemon.module').then(
+        (module) => module.FavoritePokemonModule
+      ),
   },
   { path: ':id', component: FullDetailsPageComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
