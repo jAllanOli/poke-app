@@ -64,12 +64,15 @@
       class="stats-container__stat"
     >
       <p>{{ stat.stat.name | snakeToNormalCase | titlecase }}</p>
-      <span
-        [ngStyle]="{ 'width.px': (stat.base_stat / 255) * 300 }"
+      <span [style.width.px]="(stat.base_stat / 255) * 500" class="stat-bar">
+        {{ stat.base_stat }}
+      </span>
+      <!-- <span
+        [ngStyle]="{ 'width.px': (stat.base_stat / 255) * 500 }"
         class="stat-bar"
       >
         {{ stat.base_stat }}
-      </span>
+      </span> -->
     </div>
   </section>
 
@@ -80,15 +83,32 @@
         name="moveVersionPicker"
         id="moveVersionPicker"
         [(ngModel)]="selectedMoveVersion"
+        (ngModelChange)="setMoveVersion($event)"
       >
-        <option
-          *ngFor="let version of this.getVersionsAvaliable()"
-          [value]="version"
-        >
+        <option selected disabled [value]="selectedMoveVersion">
+          Pick a game
+        </option>
+
+        <option *ngFor="let version of moveVersionOptions" [ngValue]="version">
           {{ version | snakeToNormalCase | titlecase }}
         </option>
       </select>
     </div>
+
+    <div *ngIf="selectedMoveVersion" class="moves-container__moves-list">
+      <details
+        *ngFor="let category of getMovesLearnMethods()"
+        class="learn-method-category"
+      >
+        <summary>
+          {{ category | snakeToNormalCase | titlecase }}
+        </summary>
+
+        <p *ngFor="let move of filterMovesByMethod(category)">
+          {{ move | snakeToNormalCase | titlecase }}
+        </p>
+      </details>
+    </div>
   </section>
 </main>
-<button class="btn" (click)="getMovesDetailed()">moves</button>
+<button class="btn" (click)="getDetails()">moves</button>

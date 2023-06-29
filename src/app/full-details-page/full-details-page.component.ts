@@ -7,6 +7,7 @@ import { DetailsService } from './details.service';
 import { PokemonSpecies } from '../shared/types/species';
 import { Sprites } from '../shared/types/sprites';
 import { take } from 'rxjs';
+import { MoveDetail } from '../shared/types/move';
 
 @Component({
   selector: 'app-full-details-page',
@@ -19,13 +20,16 @@ export class FullDetailsPageComponent implements OnInit {
   pokemonBasicDetails!: PokemonDetails;
   genera!: string;
   isLoading = true;
+
   generationOptions!: string[];
   selectedGeneration = 'generation-i';
   versionOptions!: string[];
   versionSelected!: string;
   sprites: string[] = [];
 
+  moveVersionOptions!: Set<string>;
   selectedMoveVersion!: string;
+  currentMovesList!: MoveDetail[];
 
   constructor(
     private route: ActivatedRoute,
@@ -56,6 +60,7 @@ export class FullDetailsPageComponent implements OnInit {
           this.pokemonBasicDetails.sprites.versions!
         );
         this.updateVersions();
+        this.moveVersionOptions = this.getMoveVersionsAvaliable();
       });
   }
 
@@ -106,27 +111,60 @@ export class FullDetailsPageComponent implements OnInit {
     this.versionSelected = '';
   }
 
-  getMovesDetailed() {
-    this.getVersionsAvaliable();
-    /* this.pokemonBasicDetails.moves.map((move) =>
-      move.version_group_details.map((version) =>
-        console.log(
-          move.move.name + ':' + version.move_learn_method.name,
-          version.version_group.name
-        )
-      )
-    ); */
+  getDetails() {
+    console.log();
   }
 
-  getVersionsAvaliable() {
+  getMoveVersionsAvaliable() {
     const versionOptions: Set<string> = new Set();
     this.pokemonBasicDetails.moves.map((move) =>
       move.version_group_details.map((version) => {
-        return versionOptions.add(version.version_group.name);
+        versionOptions.add(version.version_group.name);
       })
     );
 
     return versionOptions;
+  }
+
+  setMoveVersion(event: string) {
+    this.selectedMoveVersion = event;
+  }
+
+  filterMovesByVersion() {
+    return this.pokemonBasicDetails.moves.map((move) =>
+      move.version_group_details.filter(
+        (version) => version.version_group.name === this.selectedMoveVersion
+      )
+    );
+  }
+
+  getMovesLearnMethods() {
+    console.log('chamou');
+    const methods: Set<string> = new Set();
+    this.pokemonBasicDetails.moves.map((move) =>
+      move.version_group_details.map((version) => {
+        if (version.version_group.name === this.selectedMoveVersion) {
+          methods.add(version.move_learn_method.name);
+        }
+      })
+    );
+
+    return methods;
+  }
+
+  filterMovesByMethod(method: string) {
+    const result: string[] = [];
+    const moves = this.pokemonBasicDetails.moves.map((move) =>
+      move.version_group_details.map((version) => {
+        if (
+          version.version_group.name === this.selectedMoveVersion &&
+          version.move_learn_method.name === method
+        ) {
+          result.push(move.move.name);
+        }
+      })
+    );
+    return result;
   }
 
   private filterEngGenera() {

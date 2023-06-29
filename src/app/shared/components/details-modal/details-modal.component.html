@@ -48,7 +48,7 @@
             {{ move.version_group_details[0].level_learned_at }}
           </td>
           <td class="move-cell">
-            {{ move.move.name.replace("-", " ") | titlecase }}
+            {{ move.move.name | snakeToNormalCase | titlecase }}
           </td>
         </tr>
       </table>
