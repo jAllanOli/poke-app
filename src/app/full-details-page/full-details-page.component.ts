@@ -154,7 +154,7 @@ export class FullDetailsPageComponent implements OnInit {
 
   filterMovesByMethod(method: string) {
     const result: string[] = [];
-    const moves = this.pokemonBasicDetails.moves.map((move) =>
+    this.pokemonBasicDetails.moves.map((move) =>
       move.version_group_details.map((version) => {
         if (
           version.version_group.name === this.selectedMoveVersion &&
