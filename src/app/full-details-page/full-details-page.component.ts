@@ -92,12 +92,12 @@ export class FullDetailsPageComponent implements OnInit {
       (item) => item && typeof item === 'string'
     );
 
-    const haveAnimations = Object.values(sprites).filter(
+    const withAnimations = Object.values(sprites).filter(
       (item) => item && typeof item !== 'string'
     );
 
-    if (haveAnimations.length) {
-      const animatedSprites = Object.values(haveAnimations[0]);
+    if (withAnimations.length) {
+      const animatedSprites = Object.values(withAnimations[0]);
       animatedSprites.map((item) => item && result.push(item));
     }
 
@@ -109,10 +109,6 @@ export class FullDetailsPageComponent implements OnInit {
     this.selectedGeneration = 'generation-i';
     this.versionOptions = this.getVersionOptions();
     this.versionSelected = '';
-  }
-
-  getDetails() {
-    console.log();
   }
 
   getMoveVersionsAvaliable() {
