@@ -1,14 +1,36 @@
-<nav class="nav-bar">
-  <a class="nav-bar__link" routerLinkActive="active" routerLink="pokemons-list"
-    >Home</a
+<nav class="nav-bar" [class.closed-menu]="!isMenuOpen">
+  <div class="nav-items">
+    <a
+      class="nav-items__link"
+      routerLinkActive="active"
+      routerLink="pokemons-list"
+      (click)="toggleMenu()"
+      >Home</a
+    >
+    <a
+      class="nav-items__link"
+      routerLinkActive="active"
+      routerLink="pokemon-search"
+      (click)="toggleMenu()"
+      >Search Pokemon</a
+    >
+    <a
+      class="nav-items__link"
+      routerLinkActive="active"
+      routerLink="favorite-pokemon"
+      (click)="toggleMenu()"
+      >Favorite Pokemon</a
+    >
+  </div>
+  <button
+    class="btn"
+    (click)="toggleMenu()"
+    [class.open-menu-btn]="!isMenuOpen"
   >
-  <a class="nav-bar__link" routerLinkActive="active" routerLink="pokemon-search"
-    >Search Pokemon</a
-  >
-  <a
-    class="nav-bar__link"
-    routerLinkActive="active"
-    routerLink="favorite-pokemon"
-    >Favorite Pokemon</a
-  >
+    <app-svg
+      color="#282832"
+      hoverColor="#dee7e7"
+      [icon]="isMenuOpen ? 'close' : 'sandwich'"
+    ></app-svg>
+  </button>
 </nav>
